@@ -1,4 +1,7 @@
 # Propensity Modeling for bank customer service
+Project for boot camp 'Linear models' from AI Education: Propensity model for bank
+
+Author: Valeriia Rostovtseva (stepikID 454375132)
 
 ## Intro
 
@@ -32,10 +35,10 @@ This database stores information about bank customers and their personal data.
     - Drop rows with duplicates and incorrectly filled values
     - Add columns with number of loans 
     - Treat missed values and outliers
-    - Process and results are in [EDA.jpynb](url)
+    - Process and results are in [EDA.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/EDA.ipynb)
 2. EDA 
    - Numeric and categorical values distribution
    - Visualization of dependencies of the target and features
    - Correlation matrix
-   - Process and results are in [EDA.jpynb](url)
+   - Process and results are in [EDA.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/EDA.ipynb)
    - **Check out the live [app](https://airline-satisfaction.streamlit.app/) here!**
