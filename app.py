@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-import vizualization
+import eda
 import json
 import requests
 import streamlit as st
@@ -43,7 +43,7 @@ st.markdown('### Build histogram and boxplot')
 selected_var = st.selectbox('Choose category',
                             numeric)
 
-st.pyplot(vizualization.numeric_plot(df, selected_var))
+st.pyplot(eda.numeric_plot(df, selected_var))
 st.markdown(':paperclip: Long-tailed distributions are observed for `PERSONAL_INCOME` and `CREDIT` columns')
 
 st.write("---")
@@ -54,7 +54,7 @@ category = ['GENDER', 'EDUCATION', 'MARITAL_STATUS', 'CHILD_TOTAL', 'DEPENDANTS'
             'FL_PRESENCE_FL', 'FAMILY_INCOME', 'TARGET']
 selected_cat_var = st.selectbox('Choose category',
                                 category)
-st.pyplot(vizualization.category_plot(df, selected_cat_var))
+st.pyplot(eda.category_plot(df, selected_cat_var))
 st.markdown(':paperclip: **We have unbalanced data:** there are much more clients with no response')
 st.write("---")
 
@@ -62,7 +62,7 @@ st.markdown('## :blue[Category features vs target]')
 selected_cat_var_2 = st.selectbox('Choose feature',
                                   category[:-1])
 
-st.pyplot(vizualization.plot_target(df, selected_cat_var_2))
+st.pyplot(eda.plot_target(df, selected_cat_var_2))
 
 st.write("---")
 
@@ -74,12 +74,12 @@ selected_y_var = st.selectbox('Choose y variable',
 selected_gender = st.selectbox('Choose gender filter',
                                ['all', 'male', 'female'])
 
-st.pyplot(vizualization.scatter(df, selected_x_var, selected_y_var, selected_gender))
+st.pyplot(eda.scatter(df, selected_x_var, selected_y_var, selected_gender))
 
 st.write("---")
 
 st.markdown('## :blue[Heatmap]')
 
-st.pyplot(vizualization.heatmap_phik(df))
+st.pyplot(eda.heatmap_phik(df))
 st.markdown(":paperclip: Age and pension/work status have strong correlation, obviously. Otherwise, there is no "
             "strong correlation between features.")
