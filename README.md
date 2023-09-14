@@ -41,4 +41,12 @@ This database stores information about bank customers and their personal data.
    - Visualization of dependencies of the target and features
    - Correlation matrix
    - Process and results are in [EDA.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/EDA.ipynb)
-   - **Check out the live [app](https://airline-satisfaction.streamlit.app/) here!**
+3. Train model
+   - Scaling and encoding features
+   - Train LogisticRegression and CatBoostClassifier
+   - Hyperparameters tuning with GridsearchCV
+   - Optimize threshold for best Recall/Precision metrics
+   - Test best model
+   - Process and results are in [Model_training.jpynb]()
+
+**Check out the live [app](https://airline-satisfaction.streamlit.app/) here!**
