@@ -16,7 +16,7 @@ This database stores information about bank customers and their personal data.
 - 'AGE' - client's age, 
 - 'GENDER' - gender of the client (1 — male, 0 — female), 
 - 'EDUCATION' - education,
-- 'MARITAL_STATUS' - martial status, 
+- 'MARITAL_STATUS' - marital status, 
 - 'CHILD_TOTAL' - the number of children, 
 - 'DEPENDANTS' - the number of dependents,
 - 'SOCSTATUS_WORK_FL' - client's social status regarding work (1 — working, 0 — not working), 
@@ -31,9 +31,9 @@ This database stores information about bank customers and their personal data.
 - 'TARGET' - target variable: response to the marketing campaign (1 - the response was registered, 0 - there was no response).
 
 ## Plan
-1. Data preprocess and feature engineering
+1. Data preprocessing and feature engineering
     - Drop rows with duplicates and incorrectly filled values
-    - Add columns with number of loans 
+    - Add columns with the number of loans 
     - Treat missed values and outliers
     - Process and results are in [EDA.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/EDA.ipynb)
 2. EDA 
@@ -46,7 +46,7 @@ This database stores information about bank customers and their personal data.
    - Train LogisticRegression and CatBoostClassifier
    - Hyperparameters tuning with GridsearchCV
    - Optimize threshold for best Recall/Precision metrics
-   - Test best model
-   - Process and results are in [Model_training.jpynb]()
+   - Test the best model
+   - Process and results are in [Model_training.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/Model_training.ipynb)
 
-**Check out the live [app](https://airline-satisfaction.streamlit.app/) here!**
+**Check out the live [app](https://propensitymodelforbank-eda.streamlit.app/) here!**
