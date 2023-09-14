@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import seaborn as sns
+import catboost
 from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_score, confusion_matrix
 
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
