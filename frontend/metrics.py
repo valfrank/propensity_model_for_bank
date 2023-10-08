@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_sc
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
 plt.style.use('dark_background')
 
-HERE = '/Users/user/Desktop/bank_recom'
+HERE = ''
 
 
 def load_from_pkl(path='data', file_name='model'):
