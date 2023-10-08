@@ -14,7 +14,7 @@ def load_from_pkl(path='data', file_name='model'):
     """
     Load saved model as pickle file
     """
-    with open(f'{HERE}/{path}/{file_name}.pickle', 'rb') as f:
+    with open(f'{path}/{file_name}.pickle', 'rb') as f:
         loading = pickle.load(f)
     return loading
 
