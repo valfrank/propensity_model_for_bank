@@ -1,125 +1,85 @@
+import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-from phik.report import plot_correlation_matrix
+import eda_functions
+import requests
+import streamlit as st
+from streamlit_lottie import st_lottie
+
 
 plt.style.use('dark_background')
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
 
-columns = ['AGE', 'GENDER', 'EDUCATION', 'MARITAL_STATUS',
-           'CHILD_TOTAL', 'DEPENDANTS', 'SOCSTATUS_WORK_FL', 'SOCSTATUS_PENS_FL',
-           'OWN_AUTO', 'FL_PRESENCE_FL', 'FAMILY_INCOME', 'PERSONAL_INCOME',
-           'CREDIT', 'LOAN_NUM_TOTAL', 'LOAN_NUM_CLOSED', 'TARGET']
-names = ['Age', 'Gender', 'Education', 'Marital status',
-         'Number of children', 'Number of dependants',
-         'Work status', 'Pension status', 'Auto owner',
-         'Flat owner', 'Family income', 'Personal income',
-         'Last loan amount', 'Number of loans', 'Number of closed loans', 'Target']
-category_dict = {key: value for (key, value) in zip(columns, names)}
+st.set_page_config(
+        page_title="EDA of bank customers database",
+        page_icon=":memo:",
 
+    )
 
-def numeric_plot(df, column):
-    """
-    Function for distplot and boxplot visualization for selected numeric column
-    :param df: Dataframe
-    :param column: str
-    :return: figure
-    """
-    f, ax = plt.subplots(1, 2, figsize=(10, 4))
-    plt.suptitle(f'{category_dict[column]} distribution', fontweight='heavy', fontsize=18,
-                 fontfamily='sans-serif', color=my_colors[1], y=1.07)
-    sns.distplot(ax=ax[0], x=df[column], hist=True,
-                 bins=40,
-                 kde=True,
-                 vertical=False,
-                 color=my_colors[-1],
-                 label=category_dict[column])
+st.title("Propensity model for bank")
+st.subheader(':blue[EDA of bank customers database]')
 
-    ax[0].set_title('Histogram', size=14, weight='bold')
-    ax[0].set_ylabel('')
-    sns.boxplot(ax=ax[1], x=df[column], color=my_colors[-1])
-    ax[1].set_title('Boxplot', size=14, weight='bold')
-    ax[1].set_xlabel('')
-    return f
+url = requests.get(
+    "https://lottie.host/187665b8-b180-473b-b594-310a5d12a3fd/m0WdnkDsSg.json")
+url_json = dict()
 
+if url.status_code == 200:
+    url_json = url.json()
+else:
+    print("Error in the URL")
 
-def category_plot(df, column):
-    """
-    Function for pie chart and count plot visualization for selected category column
-    :param df: Dataframe
-    :param column: str
-    :return: figure
-    """
-    f, ax = plt.subplots(1, 2, figsize=(8, 4))
-    plt.suptitle(f'{category_dict[column]} distribution', fontweight='heavy', fontsize=18,
-                 fontfamily='sans-serif', color=my_colors[2], y=1)
-    df[column].value_counts().plot.pie(autopct='%1.1f%%', ax=ax[0], shadow=True, colors=my_colors)
-    ax[0].set_title('Pie chart', size=14, weight='bold')
-    ax[0].set_ylabel('')
-    sns.countplot(x=df[column], ax=ax[1], palette=my_colors)
-    ax[1].set_title('Histogram', size=14, weight='bold')
-    ax[1].set_xlabel('')
-    f.tight_layout()
-    f.autofmt_xdate()
-    return f
+st_lottie(url_json, speed=1.2, width=400, height=200)
 
+df = pd.read_csv('data/final.csv')
+st.markdown('We have 17 columns with different information about bank clients')
+st.write(df.sample(5))
 
-def plot_target(df, column):
-    """
-    Function for count plot of target and selected category feature
-    :param df: DataFrame
-    :param column: str
-    :return: figure
-    """
-    f, ax = plt.subplots(figsize=(8, 4))
-    ax = sns.countplot(x=df[column], hue=df['TARGET'], data=df, palette=my_colors[3:])
-    ax.set_title(f'Target vs {category_dict[column]}', size=18, weight='bold')
-    ax.set_xlabel('')
-    ax.set_ylabel('')
-    f.tight_layout()
-    return f
+st.markdown('## :blue[Numeric Features]')
+numeric = ['personal_income', 'credit', 'loan_num_total', 'loan_num_closed', 'age']
+st.write(df[numeric].describe())
+st.markdown(':paperclip: Columns `personal_income` have outliers.')
 
+st.markdown('### Build histogram and boxplot')
+selected_var = st.selectbox('Choose category',
+                            numeric)
 
-def scatter(df, column_x, column_y, gender):
-    """
-    Function for scatter plot using selected variables
-    :param df: DataFrame
-    :param column_x: str
-    :param column_y: str
-    :param gender: str
-    :return: figure
-    """
-    if gender == 'male':
-        df = df[df['GENDER'] == 1]
-    elif gender == 'female':
-        df = df[df['GENDER'] == 0]
-    else:
-        pass
+st.pyplot(eda_functions.numeric_plot(df, selected_var))
+st.markdown(':paperclip: Long-tailed distributions are observed for `personal_income` and `credit` columns')
 
-    f, ax = plt.subplots()
-    ax = sns.scatterplot(x=df[column_x],
-                         y=df[column_y],
-                         hue=df['TARGET'],
-                         palette=my_colors[1:3])
-    ax.set_xlabel(category_dict[column_x])
-    ax.set_ylabel(category_dict[column_y])
-    ax.set_title("Scatterplot of bank clients : {}".format(gender), size=18, weight='bold')
-    f.tight_layout()
-    return f
+st.write("---")
 
+st.markdown('## :blue[Category Features]')
+category = ['gender', 'education', 'marital_status',
+               'child_total', 'dependants', 'socstatus_work_fl',
+               'socstatus_pens_fl', 'own_auto', 'fl_presence_fl',
+               'family_income', 'target']
+selected_cat_var = st.selectbox('Choose category',
+                                category)
+st.pyplot(eda_functions.category_plot(df, selected_cat_var))
+st.markdown(':paperclip: **We have unbalanced data:** there are much more clients with no response')
+st.write("---")
 
-def heatmap_phik(df):
-    """
-    Function for phik correlation matrix visualisation
-    :param df: DataFrame
-    :return: figure
-    """
-    phik_overview = df.phik_matrix()
-    plot_correlation_matrix(phik_overview.values,
-                            x_labels=phik_overview.columns,
-                            y_labels=phik_overview.index,
-                            vmin=0, vmax=1, color_map="Blues",
-                            title=r"correlation $\phi_K$",
-                            fontsize_factor=0.9,
-                            figsize=(20, 10))
-    plt.tight_layout()
-    return plt
+st.markdown('## :blue[Category features vs target]')
+selected_cat_var_2 = st.selectbox('Choose feature',
+                                  category[:-1])
+
+st.pyplot(eda_functions.plot_target(df, selected_cat_var_2))
+
+st.write("---")
+
+st.markdown('## :blue[Scatter plot]')
+selected_x_var = st.selectbox('Choose x variable',
+                              ['personal_income', 'credit', 'loan_num_total', 'loan_num_closed', 'age'])
+selected_y_var = st.selectbox('Choose y variable',
+                              ['credit', 'personal_income', 'loan_num_total', 'loan_num_closed', 'age'])
+selected_gender = st.selectbox('Choose gender filter',
+                               ['all', 'male', 'female'])
+
+st.pyplot(eda_functions.scatter(df, selected_x_var, selected_y_var, selected_gender))
+
+st.write("---")
+
+st.markdown('## :blue[Heatmap]')
+
+st.pyplot(eda_functions.heatmap_phik(df))
+st.markdown(":paperclip: Age and pension/work status have strong correlation, obviously. Otherwise, there is no "
+            "strong correlation between features.")
