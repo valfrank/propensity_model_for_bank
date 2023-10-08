@@ -36,6 +36,8 @@ if st.button('Train!'):
         )
         st.write(train.json())
 
+with st.expander("See results"):
+
     X_test = load_from_pkl(file_name='X_test')
     y_test = load_from_pkl(file_name='y_test')
     table, plot = visualisation_metrics(f"{classifier}-model", X_test, y_test, 0.15)
