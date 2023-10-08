@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from backend.database import SessionLocal
 from backend.models import Clients
-from train_model_func import train_model, predict_on_input, preprocess_data
+from backend.train_model_func import train_model, predict_on_input, preprocess_data
 import pandas as pd
 from backend.schema import Client, ClientPrediction, ClientList, Classifiers
 
