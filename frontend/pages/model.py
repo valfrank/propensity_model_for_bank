@@ -1,8 +1,13 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 import time
-from propensity_model_for_bank.frontend.metrics import load_from_pkl, visualisation_metrics
+from metrics import load_from_pkl, visualisation_metrics
 import requests
+
+import sys
+# Insert functions path into working dir if they are not in the same working dir
+sys.path.insert(1, "propensity_model_for_bank/frontend")
+
 
 BACKEND_PATH = 'https://propensity-model.onrender.com'
 
