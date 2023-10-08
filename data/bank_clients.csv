@@ -1,4 +1,4 @@
-AGREEMENT_RK,age,gender,education,marital_status,child_total,dependants,socstatus_work_fl,socstatus_pens_fl,own_auto,fl_presence_fl,family_income,personal_income,credit,loan_num_total,loan_num_closed,target
+AGREEMENT_RK,AGE,GENDER,EDUCATION,MARITAL_STATUS,CHILD_TOTAL,DEPENDANTS,SOCSTATUS_WORK_FL,SOCSTATUS_PENS_FL,OWN_AUTO,FL_PRESENCE_FL,FAMILY_INCOME,PERSONAL_INCOME,CREDIT,LOAN_NUM_TOTAL,LOAN_NUM_CLOSED,TARGET
 60099204,42,1,Среднее,Не состоял в браке,1,0,1,0,0,1,от 20000 до 50000 руб.,25000,5588,1,0,1
 62244665,28,1,Среднее специальное,Состою в браке,1,1,1,0,0,0,от 10000 до 20000 руб.,10000,19498,1,0,0
 61050759,64,0,Среднее специальное,Состою в браке,2 и больше,0,1,1,1,0,от 20000 до 50000 руб.,30000,15470,1,1,0
