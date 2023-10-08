@@ -4,7 +4,7 @@ import time
 import requests
 import pickle
 
-BACKEND_PATH = 'http://localhost:8000'
+BACKEND_PATH = 'https://propensity-model.onrender.com'
 
 plt.style.use('dark_background')
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
@@ -15,7 +15,7 @@ st.set_page_config(
 
 )
 
-with open('/Users/user/Desktop/bank_recom/data/ids.pickle', 'rb') as f:
+with open('data/ids.pickle', 'rb') as f:
     ids = pickle.load(f)
 
 st.title("Propensity model for bank")
