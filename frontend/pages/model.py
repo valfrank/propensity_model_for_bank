@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 import time
-from metrics import load_from_pkl, visualisation_metrics
+from frontend.metrics import load_from_pkl, visualisation_metrics
 import requests
 
-BACKEND_PATH = 'http://localhost:8000'
+BACKEND_PATH = 'https://propensity-model.onrender.com'
 
 plt.style.use('dark_background')
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
