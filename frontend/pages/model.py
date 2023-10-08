@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 import time
-from frontend.metrics import load_from_pkl, visualisation_metrics
+from propensity_model_for_bank.frontend.metrics import load_from_pkl, visualisation_metrics
 import requests
 
 BACKEND_PATH = 'https://propensity-model.onrender.com'
