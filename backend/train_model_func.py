@@ -8,7 +8,6 @@ from sklearn.svm import SVC
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
 plt.style.use('dark_background')
 
-HERE = ''
 
 def load_from_pkl(path='data', file_name='model'):
     """
@@ -23,7 +22,7 @@ def save_to_pkl(data, path='data', file_name='model'):
     """
     Save oblects as pickle files
     """
-    with open(f'{HERE}/{path}/{file_name}.pickle', 'wb') as f:
+    with open(f'{path}/{file_name}.pickle', 'wb') as f:
         pickle.dump(data, f)
 
 
