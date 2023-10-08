@@ -43,10 +43,11 @@ This database stores information about bank customers and their personal data.
    - Process and results are in [EDA.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/EDA.ipynb)
 3. Train model
    - Scaling and encoding features
-   - Train LogisticRegression and CatBoostClassifier
+   - Train LogisticRegression, SVM, CatBoostClassifier
    - Hyperparameters tuning with GridsearchCV
    - Optimize threshold for best Recall/Precision metrics
    - Test the best model
    - Process and results are in [Model_training.jpynb](https://github.com/valfrank/propensity_model_for_bank/blob/main/Model_training.ipynb)
 
-**Check out the live [app](https://propensitymodelforbank-eda.streamlit.app/) here!**
+**Check out the live [app]([https://propensitymodelforbank.streamlit.app/)](https://propensitymodelforbank.streamlit.app/) here!**
+
