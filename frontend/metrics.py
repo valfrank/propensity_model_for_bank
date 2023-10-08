@@ -8,19 +8,17 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_sc
 my_colors = ['#2350D9', '#417CF2', '#25D997', '#96D9B3', '#F2C84B']
 plt.style.use('dark_background')
 
-HERE = ''
-
 
 def load_from_pkl(path='data', file_name='model'):
     """ Load saved model as pickle file"""
-    with open(f'{HERE}/{path}/{file_name}.pickle', 'rb') as f:
+    with open(f'{path}/{file_name}.pickle', 'rb') as f:
         loading = pickle.load(f)
     return loading
 
 
 def visualisation_metrics(classifier, X, y, i):
     """
-    Create table with metrics anв confusion matrix plot depending on threshold
+    Create table with metrics and confusion matrix plot depending on threshold
     """
     model = load_from_pkl(file_name=classifier)
     test_pred = model.predict_proba(X)
